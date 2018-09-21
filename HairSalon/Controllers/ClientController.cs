@@ -29,6 +29,5 @@ namespace HairSalon.Controllers
             model.Add("employee", employee);
             return View(model);
         }
-
     }
 }
