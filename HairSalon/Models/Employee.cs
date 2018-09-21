@@ -69,7 +69,35 @@ namespace HairSalon.Models
             }
             return allEmployee;
         }
+        public static Employee Find(int id)
+        {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
 
+            var cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"SELECT * FROM employee where id = (@searchId);";
 
+            MySqlParameter searchId = new MySqlParameter();
+            searchId.ParameterName = "@searchId";
+            searchId.Value = id;
+            cmd.Parameters.Add(searchId);
+
+            var rdr = cmd.ExecuteReader() as MySqlDataReader;
+            int EmployeeId = 0;
+            string EmployeeName = "";
+            while(rdr.Read())
+            {
+                EmployeeId = rdr.GetInt32(0);
+                EmployeeName = rdr.GetString(1);
+            }
+            Employee newEmployee = new Employee (EmployeeName, EmployeeId);
+            
+            conn.Close();
+            if (conn!=null)
+            {
+                conn.Dispose();
+            }
+            return newEmployee;
+        }
     }
 }
