@@ -114,16 +114,18 @@ namespace HairSalon.Models
             cmd.Parameters.Add(newEmployeeId);
 
             var rdr = cmd.ExecuteReader() as MySqlDataReader;
+            int clientId = 0;
+            string clientName = "";
+            int clientEmployeeid = 0;
 
             while(rdr.Read())
             {
-                int clientId = rdr.GetInt32(0);
-                string clientName = rdr.GetString(1);
-                int clientEmployeeid = rdr.GetInt32(2);
+                clientId = rdr.GetInt32(0);
+                clientName = rdr.GetString(1);
+                clientEmployeeid = rdr.GetInt32(2);
                 Client newClient = new Client(clientName, clientId, clientEmployeeid);
                 allEmployeeClient.Add(newClient);
-
-              }
+            }
           conn.Close();
             if (conn != null)
             {

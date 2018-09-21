@@ -34,12 +34,17 @@ namespace HairSalon.Models
             conn.Open();
 
             var cmd = conn.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"INSERT INTO client (client_name) VALUES (@name);";
+            cmd.CommandText = @"INSERT INTO client (client_name, employee_id) VALUES (@name, @employeeId);";
 
             MySqlParameter name = new MySqlParameter();
             name.ParameterName = "@name";
             name.Value = this._clientName;
             cmd.Parameters.Add(name);
+
+            MySqlParameter employeeId = new MySqlParameter();
+            employeeId.ParameterName = "@employeeId";
+            employeeId.Value = this._employeeId;
+            cmd.Parameters.Add(employeeId);
 
             cmd.ExecuteNonQuery();
             _clientId = (int)cmd.LastInsertedId;
@@ -108,9 +113,6 @@ namespace HairSalon.Models
                 conn.Dispose();
             }
             return foundClient;
-
-            
         }
-
     }
 }

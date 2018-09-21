@@ -37,16 +37,16 @@ namespace HairSalon.Controllers
             return RedirectToAction("Index");
         }
         [HttpPost("/clients")]
-        public ActionResult CreateClient(int clientId, string clientName, int employeeId)
+        public ActionResult CreateClient(string clientName, int employeeId)
         {
             Dictionary<string, object> model = new Dictionary<string, object>();
             Employee foundEmployee = Employee.Find(employeeId);
-            Client newClient = new Client(Request.Form["new-client"], employeeId, clientId);
+            Client newClient = new Client(Request.Form["new-client"], employeeId);
             newClient.Save();
             List<Client> employeeClient = foundEmployee.GetClient();
             model.Add("client", employeeClient);
             model.Add("employee", foundEmployee);
-            return View("Details", model);
+            return RedirectToAction("Details");
         }
     }
 }
