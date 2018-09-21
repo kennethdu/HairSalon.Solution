@@ -17,14 +17,7 @@ namespace HairSalon.Controllers
         {
             return View();
         }
-        [HttpPost("/employee")]
-        public ActionResult Create()
-        {
-            Employee NewEmployee = new Employee(Request.Form["new-employee"]);
-            NewEmployee.Save();
-            List<Employee> allEmployee = Employee.GetAllEmployee();
-            return RedirectToAction("Index");
-        }
+
         [HttpGet("/employee/{id}")]
         public ActionResult Details(int id)
         {
@@ -35,11 +28,25 @@ namespace HairSalon.Controllers
             model.Add("client", employeeClient);
             return View(model);
         }
-        // [HttpPost("/employee/{employeeId}/client/new")]
-        // public ActionResult CreateClient (int employeeId)
-        // {
-        //     Client thisClient = Client.Find(employee);
-        //     this
-        // }
+        [HttpPost("/employee")]
+        public ActionResult Create()
+        {
+            Employee NewEmployee = new Employee(Request.Form["new-employee"]);
+            NewEmployee.Save();
+            List<Employee> allEmployee = Employee.GetAllEmployee();
+            return RedirectToAction("Index");
+        }
+        [HttpPost("/clients")]
+        public ActionResult CreateClient(int clientId, string clientName, int employeeId)
+        {
+            Dictionary<string, object> model = new Dictionary<string, object>();
+            Employee foundEmployee = Employee.Find(employeeId);
+            Client newClient = new Client(Request.Form["new-client"], employeeId, clientId);
+            newClient.Save();
+            List<Client> employeeClient = foundEmployee.GetClient();
+            model.Add("client", employeeClient);
+            model.Add("employee", foundEmployee);
+            return View("Details", model);
+        }
     }
 }
