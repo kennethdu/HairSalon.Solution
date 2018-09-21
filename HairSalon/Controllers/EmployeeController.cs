@@ -32,7 +32,7 @@ namespace HairSalon.Controllers
             List<Client> employeeClient = selectedEmployee.GetClient();
             model.Add("employee", selectedEmployee);
             model.Add("client", employeeClient);
+            return View(model);
         }
-
     }
 }

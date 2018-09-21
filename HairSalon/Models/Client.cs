@@ -24,6 +24,10 @@ namespace HairSalon.Models
         {
             return _clientId;
         }
+        public int GetEmployeeId()
+        {
+            return _employeeId;
+        }
         public void Save()
         {
             MySqlConnection conn = DB.Connection();
@@ -45,6 +49,30 @@ namespace HairSalon.Models
             {
                 conn.Dispose();
             }
+        }
+        public static List<Client> GetAllClient()
+        {
+            List<Client> allClients = new List<Client> {};
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"SELECT * FROM client;";
+            MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
+
+            while(rdr.Read())
+            {
+                int clientId = rdr.GetInt32(0);
+                string clientName = rdr.GetString(1);
+                int employeeId = rdr.GetInt32(2);
+                Client newClient = new Client(clientName, employeeId, clientId);
+                allClients.Add(newClient);
+            }
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
+            return allClients;
         }
 
     }
