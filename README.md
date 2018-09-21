@@ -6,7 +6,7 @@
 
 ## Description
 
-_.Hair Salon
+_.Hair Salon._
 
 Create an app for a hair salon. The owner should be able to add a list of the stylists, and for each stylist, add clients who see that stylist. The stylists work independently, so each client only belongs to a single stylist.
 User Stories
@@ -31,7 +31,7 @@ User Stories
 | :-------------     | :------------- | :------------- |
 | **The program will allow the user to add a stylist** | Input: "Jane" | Output: "Jane" |
 | **The program will allow the user to add clients** | Input: "Susan" | Output: "Susan"|
-| **The program will allow the user to view the clients that a stylist has** | Input: "Employee: Jane Client: Susan" | Output: "Susan" |
+| **The program will allow the user to view the clients that a stylist has** | Input: "Employee: Jane, Client: Susan" | Output: "Susan" |
 
 ## Known Bugs
 
