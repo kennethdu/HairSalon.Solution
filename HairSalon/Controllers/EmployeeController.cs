@@ -24,6 +24,15 @@ namespace HairSalon.Controllers
             NewEmployee.Save();
             return RedirectToAction("Index");
         }
+        [HttpGet("/employee/{id}")]
+        public ActionResult Details(int id)
+        {
+            Dictionary<string, object> model = new Dictionary<string, object>();
+            Employee selectedEmployee = Employee.Find(id);
+            List<Client> employeeClient = selectedEmployee.GetClient();
+            model.Add("employee", selectedEmployee);
+            model.Add("client", employeeClient);
+        }
 
     }
 }
