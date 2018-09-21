@@ -20,6 +20,10 @@ namespace HairSalon.Models
         {
             return _clientName;
         }
+        public int GetClientId()
+        {
+            return _clientId;
+        }
         public void Save()
         {
             MySqlConnection conn = DB.Connection();
