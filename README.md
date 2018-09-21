@@ -6,7 +6,7 @@
 
 ## Description
 
-_.Hair Salon._
+_Hair Salon._
 
 Create an app for a hair salon. The owner should be able to add a list of the stylists, and for each stylist, add clients who see that stylist. The stylists work independently, so each client only belongs to a single stylist.
 User Stories
@@ -23,6 +23,13 @@ User Stories
 * In a c# compiler (I suggest mono) type 'dotnet run' to run a local host
 * In a web browser, navigate to 'http://localhost:5000/'
 * The program will allow the user to choose add and choose a stylists. Once the users adds a stylists, the user is allowed to add clients, and view each client that the stylists has.
+
+* _Setup Database_
+
+* CREATE DATABASE kenneth_du;
+* USE kenneth_du;
+* CREATE TABLE employee (employee_id serial PRIMARY KEY, employee_name VARCHAR(255));
+* CREATE TABLE client (client_id serial PRIMARY KEY, client_name VARCHAR(255), employee_id INT);
 
 ## Specifications
 
