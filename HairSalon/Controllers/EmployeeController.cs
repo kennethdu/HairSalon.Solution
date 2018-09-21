@@ -18,12 +18,12 @@ namespace HairSalon.Controllers
             return View();
         }
         [HttpPost("/employee")]
-        public ActionResult Create(string newEmployee)
+        public ActionResult Create()
         {
-            Employee NewEmployee = new Employee(newEmployee);
+            Employee NewEmployee = new Employee(Request.Form["new-employee"]);
             NewEmployee.Save();
             List<Employee> allEmployee = Employee.GetAllEmployee();
-            return View("Index", allEmployee);
+            return RedirectToAction("Index");
         }
         [HttpGet("/employee/{id}")]
         public ActionResult Details(int id)
@@ -35,10 +35,10 @@ namespace HairSalon.Controllers
             model.Add("client", employeeClient);
             return View(model);
         }
-        // [HttpPost("/employee{employeeId}/client/new")]
+        // [HttpPost("/employee/{employeeId}/client/new")]
         // public ActionResult CreateClient (int employeeId)
         // {
-        //     Client thisClient = Client.Find(id);
+        //     Client thisClient = Client.Find(employee);
         //     this
         // }
     }

@@ -58,7 +58,7 @@ namespace HairSalon.Models
             MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
             cmd.CommandText = @"SELECT * FROM client;";
             MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
-
+ 
             while(rdr.Read())
             {
                 int clientId = rdr.GetInt32(0);

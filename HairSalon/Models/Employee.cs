@@ -82,7 +82,7 @@ namespace HairSalon.Models
             searchId.Value = id;
             cmd.Parameters.Add(searchId);
 
-            MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
+            var rdr = cmd.ExecuteReader() as MySqlDataReader;
             int EmployeeId = 0;
             string EmployeeName = "";
             while(rdr.Read())
