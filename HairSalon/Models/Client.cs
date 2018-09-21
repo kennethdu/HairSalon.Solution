@@ -34,7 +34,7 @@ namespace HairSalon.Models
             conn.Open();
 
             var cmd = conn.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"INSERT INTO client (name) VALUES (@name);";
+            cmd.CommandText = @"INSERT INTO client (client_name) VALUES (@name);";
 
             MySqlParameter name = new MySqlParameter();
             name.ParameterName = "@name";
@@ -80,7 +80,7 @@ namespace HairSalon.Models
             conn.Open();
 
             var cmd = conn.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"SELECT * FROM client where id = @thisId;";
+            cmd.CommandText = @"SELECT * FROM client where client_id = @thisId;";
 
             MySqlParameter thisId = new MySqlParameter();
             thisId.ParameterName = "@thisId";

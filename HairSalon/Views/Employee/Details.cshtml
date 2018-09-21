@@ -5,11 +5,11 @@
 <div class='container'>
   <h1>Hair Salon</h1>
   <hr />
-  <h2>@Model["employee"].GetName() Employee:</h2>
+  <h2>@Model["employee"].GetEmployee() Clients:</h2>
   <ul>
     @foreach (var item in @Model["client"])
     {
-      <h4><a href='/employee/@Model["employee"].GetEmployeeId()/client/@item.GetClientId()'>@item.GetClient()</a></h4>
+      <h4>@item.GetClient()</h4>
 
     }
   </ul>

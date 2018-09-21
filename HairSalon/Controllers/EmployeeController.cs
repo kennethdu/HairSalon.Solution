@@ -10,7 +10,7 @@ namespace HairSalon.Controllers
         public ActionResult Index()
         {
             List<Employee> allEmployee = Employee.GetAllEmployee();
-            return View();
+            return View(allEmployee);
         }
         [HttpGet("/employee/new")]
         public ActionResult CreateForm()
@@ -22,7 +22,8 @@ namespace HairSalon.Controllers
         {
             Employee NewEmployee = new Employee(newEmployee);
             NewEmployee.Save();
-            return RedirectToAction("Index");
+            List<Employee> allEmployee = Employee.GetAllEmployee();
+            return View("Index", allEmployee);
         }
         [HttpGet("/employee/{id}")]
         public ActionResult Details(int id)
@@ -34,5 +35,11 @@ namespace HairSalon.Controllers
             model.Add("client", employeeClient);
             return View(model);
         }
+        // [HttpPost("/employee{employeeId}/client/new")]
+        // public ActionResult CreateClient (int employeeId)
+        // {
+        //     Client thisClient = Client.Find(id);
+        //     this
+        // }
     }
 }

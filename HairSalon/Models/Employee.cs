@@ -14,11 +14,11 @@ namespace HairSalon.Models
             _employeeName = EmployeeName;
             _employeeId = EmployeeId;
         }
-        private string GetEmployee()
+        public string GetEmployee()
         {
             return _employeeName;
         }
-        private int GetEmployeeId()
+        public int GetEmployeeId()
         {
             return _employeeId;
         }
@@ -28,11 +28,11 @@ namespace HairSalon.Models
             conn.Open();
 
             var cmd = conn.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"INSERT INTO employee (name) VALUES (@name);";
+            cmd.CommandText = @"INSERT INTO employee (employee_name) VALUES (@name);";
 
             MySqlParameter name = new MySqlParameter();
             name.ParameterName = "@name";
-            name.Value = this._employeeName;
+            name.Value = this.GetEmployee();
             cmd.Parameters.Add(name);
 
             cmd.ExecuteNonQuery();
@@ -50,10 +50,10 @@ namespace HairSalon.Models
             MySqlConnection conn = DB.Connection();
             conn.Open();
 
-            var cmd = conn.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"SELECT * employee;";
+            MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"SELECT * FROM employee;";
 
-            var rdr = cmd.ExecuteReader() as MySqlDataReader;
+            MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
             while(rdr.Read())
             {
                 int EmployeeId = rdr.GetInt32(0);
@@ -75,14 +75,14 @@ namespace HairSalon.Models
             conn.Open();
 
             var cmd = conn.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"SELECT * FROM employee where id = (@searchId);";
+            cmd.CommandText = @"SELECT * FROM employee where employee_id = (@searchId);";
 
             MySqlParameter searchId = new MySqlParameter();
             searchId.ParameterName = "@searchId";
             searchId.Value = id;
             cmd.Parameters.Add(searchId);
 
-            var rdr = cmd.ExecuteReader() as MySqlDataReader;
+            MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
             int EmployeeId = 0;
             string EmployeeName = "";
             while(rdr.Read())
