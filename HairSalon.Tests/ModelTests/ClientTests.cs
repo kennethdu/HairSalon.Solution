@@ -33,14 +33,14 @@ namespace HairSalon.Tests
         {
             //Arrange
             Client ClientOne = new Client("Kenneth", 1, 0);
-            Client ClientTwo = new Client("Ken", 1, 0);
+            Client ClientTwo = new Client("Kenneth", 2, 0);
 
             //Assert
             Assert.AreEqual(ClientOne, ClientTwo);
         }
 
         [TestMethod]
-        public void Save_CitiesSaveToDatabase_CitiesList()
+        public void Save_PatientsSaveToDatabase_PatientsList()
         {
             //Arrange
             Client testClient = new Client("Kenneth", 1, 0);
@@ -71,7 +71,7 @@ namespace HairSalon.Tests
             Assert.AreEqual(testId, result);
         }
         [TestMethod]
-        public void Find_FindsItemInDatabase_Client()
+        public void Find_FindsClientInDatabase_Client()
         {
             //Arrange
             Client testClient = new Client("Kenneth", 1, 0);

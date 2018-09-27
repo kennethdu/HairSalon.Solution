@@ -41,7 +41,7 @@ namespace HairSalon.Tests
         }
 
         [TestMethod]
-        public void Save_CitiesSaveToDatabase_CitiesList()
+        public void Save_EmployeesSaveToDatabase_EmployeeList()
         {
             //Arrange
             Employee testEmployee = new Employee("Kenneth");
@@ -72,7 +72,7 @@ namespace HairSalon.Tests
             Assert.AreEqual(testId, result);
         }
         [TestMethod]
-        public void Find_FindsItemInDatabase_Employee()
+        public void Find_FindsEmployeeInDatabase_Employee()
         {
             //Arrange
             Employee testEmployee = new Employee("Kenneth");
