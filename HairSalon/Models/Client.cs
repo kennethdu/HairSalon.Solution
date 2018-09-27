@@ -28,6 +28,26 @@ namespace HairSalon.Models
         {
             return _employeeId;
         }
+        public override bool Equals(System.Object otherClient)
+        {
+            if (!(otherClient is Client))
+            {
+                return false;
+            }
+            else
+            {
+                Client newClient = (Client)otherClient;
+                bool idEquality = this.GetClientId() == newClient.GetClientId();
+                bool nameEquality = this.GetClient() == newClient.GetClient();
+                bool employeeIdEquality = this.GetEmployeeId() == newClient.GetEmployeeId();
+                return (idEquality && nameEquality && employeeIdEquality);
+            }
+        }
+        public override int GetHashCode()
+        {
+            string allHash = this.GetClient();
+            return allHash.GetHashCode();
+        }
         public void Save()
         {
             MySqlConnection conn = DB.Connection();
@@ -113,6 +133,21 @@ namespace HairSalon.Models
                 conn.Dispose();
             }
             return foundClient;
+        }
+        public static void DeleteAll()
+        {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+
+            var cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"DELETE FROM client;";
+
+            cmd.ExecuteNonQuery();
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
         }
     }
 }

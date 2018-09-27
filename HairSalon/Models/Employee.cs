@@ -22,6 +22,25 @@ namespace HairSalon.Models
         {
             return _employeeId;
         }
+        public override bool Equals(System.Object otherEmployee)
+        {
+            if (!(otherEmployee is Employee))
+            {
+                return false;
+            }
+            else
+            {
+                Employee newEmployee = (Employee) otherEmployee;
+                bool idEquality = this.GetEmployeeId() == newEmployee.GetEmployeeId();
+                bool nameEquality = this.GetEmployee() == newEmployee.GetEmployee();
+                return (idEquality && nameEquality);
+            }
+        }
+        public override int GetHashCode()
+        {
+            string allHash = this.GetEmployee();
+            return allHash.GetHashCode();
+        }
         public void Save()
         {
             MySqlConnection conn = DB.Connection();
@@ -132,6 +151,21 @@ namespace HairSalon.Models
                 conn.Dispose();
             }
             return allEmployeeClient;
+        }
+        public static void DeleteAll()
+        {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+
+            var cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"DELETE FROM employee;";
+
+            cmd.ExecuteNonQuery();
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
         }
     }
 }
