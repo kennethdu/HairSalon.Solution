@@ -33,7 +33,7 @@ namespace HairSalon.Tests
         {
             //Arrange
             Client ClientOne = new Client("Kenneth", 1, 0);
-            Client ClientTwo = new Client("Kenneth", 2, 0);
+            Client ClientTwo = new Client("Kenneth", 1, 0);
 
             //Assert
             Assert.AreEqual(ClientOne, ClientTwo);
