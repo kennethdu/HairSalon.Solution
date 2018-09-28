@@ -41,12 +41,24 @@ namespace HairSalon.Controllers
         {
             Dictionary<string, object> model = new Dictionary<string, object>();
             Employee foundEmployee = Employee.Find(employeeId);
-            Client newClient = new Client(Request.Form["new-client"], employeeId);
+            Client newClient = new Client(Request.Form["new-client"]);
             newClient.Save();
             List<Client> employeeClient = foundEmployee.GetClient();
             model.Add("client", employeeClient);
             model.Add("employee", foundEmployee);
-            return RedirectToAction("Details");
+            return RedirectToAction("Details", new {id = employeeId});
+        }
+        [HttpPost("/specialties")]
+        public ActionResult CreateSpecialty(string specialtyName, int employeeId)
+        {
+            Dictionary<string, object> model = new Dictionary<string, object>();
+            Employee foundEmployee = Employee.Find(employeeId);
+            Specialty newSpecialty = new Specialty(Request.Form["new-specialty"]);
+            newSpecialty.Save();
+            List<Specialty> employeeSpecialty = foundEmployee.GetSpecialty();
+            model.Add("specialty", employeeSpecialty);
+            model.Add("employee", foundEmployee);
+            return RedirectToAction("Details", new{id = employeeId});
         }
     }
 }
