@@ -6,7 +6,7 @@ namespace HairSalon.Controllers
 {
     public class ClientController : Controller
     {
-        [HttpGet("/allclients")]
+        [HttpGet("/client")]
         public ActionResult Index()
         {
             List<Client> allClients = Client.GetAllClient();
@@ -28,6 +28,30 @@ namespace HairSalon.Controllers
             model.Add("client", client);
             model.Add("employee", employee);
             return View(model);
+        }
+        [HttpGet("/employee/{employeeId}/client/{clientId}/update")]
+        public ActionResult UpdateForm (int employeeId, int clientId)
+        {
+            Client thisClient = Client.Find(clientId);
+            Employee thisEmployee = Employee.Find(employeeId);
+            return View();
+        }
+        [HttpGet("/employee/{employeeId}/client/{clientId}/delete")]
+        public ActionResult DeleteOne(int employeeId, int clientId)
+        {
+            Client thisClient = Client.Find(clientId);
+            Employee thisEmployee = Employee.Find(employeeId);
+            thisClient.Delete();
+            return RedirectToAction("Index");
+        }
+        [HttpPost("/employee/{employeeId}/client/{clientId}/update")]
+        public ActionResult Update(int employeeId, int clientId)
+        {
+            Employee thisEmployee = Employee.Find(employeeId);
+            Client thisClient = Client.Find(clientId);
+            thisClient.Edit(Request.Form["new-client-name"]);
+            return RedirectToAction("Index");
+
         }
     }
 }

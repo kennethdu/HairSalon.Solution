@@ -1,0 +1,14 @@
+@{
+  Layout = "_Layout";
+}
+<div class="container">
+<h1>To Do List</h1>
+<hr/>
+<h2>Edit client:@Model.GetClient()</h2>
+<form action ="/client/@Model.GetclientId()/update" method="post">
+  <label for="new-client-name">Name:</label>
+  <input id = "new-client-name" type="text" name="new-client-name" value="@Model.GetName()">
+  <button type = "submit" > Update </ button >
+</ form >
+< h4 >< a href="/client">Return home</a></h4>
+</div>
