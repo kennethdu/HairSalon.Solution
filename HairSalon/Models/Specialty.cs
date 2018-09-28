@@ -69,8 +69,6 @@ namespace HairSalon.Models
             }
             return allSpecialty;
         }
-
-
         public static Specialty Find(int id)
         {
             MySqlConnection conn = DB.Connection();
@@ -100,8 +98,6 @@ namespace HairSalon.Models
                 conn.Dispose();
             }
             return newSpecialty;
-
-
         }
         public void AddEmployee(Employee newEmployee)
         {
