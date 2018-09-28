@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Sep 22, 2018 at 01:44 AM
+-- Generation Time: Sep 28, 2018 at 09:46 PM
 -- Server version: 5.6.35
 -- PHP Version: 7.0.15
 
@@ -25,84 +25,148 @@ USE `kenneth_du`;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `client`
+-- Table structure for table `clients`
 --
 
-CREATE TABLE `client` (
-  `client_id` int(11) NOT NULL,
-  `client_name` varchar(255) NOT NULL,
-  `employee_id` int(11) NOT NULL
+CREATE TABLE `clients` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `client`
+-- Truncate table before insert `clients`
 --
 
-INSERT INTO `client` (`client_id`, `client_name`, `employee_id`) VALUES
-(1, 'jane', 1),
-(2, 'jen', 1),
-(3, 'jen', 3),
-(4, 'tina', 0),
-(5, 'tina', 0),
-(6, 'jan', 0),
-(7, 'sandy', 0),
-(8, 'sanddy', 0),
-(9, 'sandy', 0),
-(10, 'sandy', 0),
-(11, 'sandy', 0),
-(12, 'asdfklj', 3);
-
+TRUNCATE TABLE `clients`;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `employee`
+-- Table structure for table `employees`
 --
 
-CREATE TABLE `employee` (
-  `employee_id` int(11) NOT NULL,
-  `employee_name` varchar(255) NOT NULL
+CREATE TABLE `employees` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `employee`
+-- Truncate table before insert `employees`
 --
 
-INSERT INTO `employee` (`employee_id`, `employee_name`) VALUES
-(1, 'sarah'),
-(2, 'susan'),
-(3, 'kenneth'),
-(4, 'tim');
+TRUNCATE TABLE `employees`;
+-- --------------------------------------------------------
 
+--
+-- Table structure for table `employees_clients`
+--
+
+CREATE TABLE `employees_clients` (
+  `id` int(11) NOT NULL,
+  `employee_id` int(11) NOT NULL,
+  `client_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Truncate table before insert `employees_clients`
+--
+
+TRUNCATE TABLE `employees_clients`;
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `employees_specialties`
+--
+
+CREATE TABLE `employees_specialties` (
+  `id` int(11) NOT NULL,
+  `employee_id` int(11) NOT NULL,
+  `specialty_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Truncate table before insert `employees_specialties`
+--
+
+TRUNCATE TABLE `employees_specialties`;
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `specialties`
+--
+
+CREATE TABLE `specialties` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Truncate table before insert `specialties`
+--
+
+TRUNCATE TABLE `specialties`;
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `client`
+-- Indexes for table `clients`
 --
-ALTER TABLE `client`
-  ADD PRIMARY KEY (`client_id`);
+ALTER TABLE `clients`
+  ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `employee`
+-- Indexes for table `employees`
 --
-ALTER TABLE `employee`
-  ADD PRIMARY KEY (`employee_id`);
+ALTER TABLE `employees`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `employees_clients`
+--
+ALTER TABLE `employees_clients`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `employees_specialties`
+--
+ALTER TABLE `employees_specialties`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `specialties`
+--
+ALTER TABLE `specialties`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `client`
+-- AUTO_INCREMENT for table `clients`
 --
-ALTER TABLE `client`
-  MODIFY `client_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+ALTER TABLE `clients`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `employee`
+-- AUTO_INCREMENT for table `employees`
 --
-ALTER TABLE `employee`
-  MODIFY `employee_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+ALTER TABLE `employees`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `employees_clients`
+--
+ALTER TABLE `employees_clients`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `employees_specialties`
+--
+ALTER TABLE `employees_specialties`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `specialties`
+--
+ALTER TABLE `specialties`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
