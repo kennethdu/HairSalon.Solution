@@ -28,9 +28,9 @@ namespace HairSalon.Controllers
             List<Client> allClients = Client.GetAllClient();
             List<Specialty> allSpecialties = Specialty.GetAll();
             model.Add("employee", selectedEmployee);
-            model.Add("specialties", employeeSpecialty);
+            model.Add("employeeSpecialties", employeeSpecialty);
             model.Add("client", employeeClient);
-            model.Add("allClients", allClients);
+            model.Add("allClient", allClients);
             model.Add("allSpecialties", allSpecialties);
             return View(model);
         }
@@ -65,7 +65,7 @@ namespace HairSalon.Controllers
             return RedirectToAction("Index");
         }
         [HttpPost("/client")]
-        public ActionResult CreateClient(string clientName, int employeeId)
+        public ActionResult CreateClient(int employeeId)
         {
             Dictionary<string, object> model = new Dictionary<string, object>();
             Employee foundEmployee = Employee.Find(employeeId);
@@ -78,11 +78,11 @@ namespace HairSalon.Controllers
             return RedirectToAction("Details", new{id = employeeId});
         }
         [HttpPost("/specialty")]
-        public ActionResult CreateSpecialty(string specialtyName, int employeeId)
+        public ActionResult CreateSpecialty(int employeeId)
         {
             Dictionary<string, object> model = new Dictionary<string, object>();
             Employee foundEmployee = Employee.Find(employeeId);
-            Specialty newSpecialty = new Specialty(Request.Form["new-specialty"]);
+            Specialty newSpecialty = new Specialty(Request.Form["new-specialties"]);
             newSpecialty.Save();
             foundEmployee.AddSpecialty(newSpecialty);
             List<Specialty> employeeSpecialty = foundEmployee.GetSpecialty();

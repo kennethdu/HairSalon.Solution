@@ -12,12 +12,10 @@ namespace HairSalon.Controllers
             List<Client> allClients = Client.GetAllClient();
             return View(allClients);
         }
-        [HttpGet("/employee/{employeeId}/client/new")]
-        public ActionResult CreateForm(int employeeId)
+        [HttpGet("/client/new")]
+        public ActionResult CreateForm()
         {
-            Dictionary<string, object> model = new Dictionary<string, object>();
-            Employee employee = Employee.Find(employeeId);
-            return View(employee);
+            return View();
         }
         [HttpGet("/employee/{employeeId}/client/{clientId}")]
         public ActionResult Details(int employeeId, int clientId)

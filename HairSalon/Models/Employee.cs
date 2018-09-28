@@ -182,13 +182,15 @@ namespace HairSalon.Models
         }
         public List<Specialty> GetSpecialty()
         {
+            List<Specialty> specialties = new List<Specialty> {};
+
             MySqlConnection conn = DB.Connection();
             conn.Open();
 
             var cmd = conn.CreateCommand() as MySqlCommand;
             cmd.CommandText = @"SELECT specialties.* FROM employees
-            JOIN employees_specialties ON (specialties.id = employees_specialties.specialty_id)
-            JOIN specialties ON (employees_specialties.employee_id = employees.id)
+            JOIN employees_specialties ON (employees.id = employees_specialties.employee_id)
+            JOIN specialties ON (employees_specialties.specialty_id = specialties.id)
             WHERE employees.id = @employeesIdParameter;";
 
             MySqlParameter employeesIdParameter = new MySqlParameter();
@@ -197,8 +199,6 @@ namespace HairSalon.Models
             cmd.Parameters.Add(employeesIdParameter);
 
             var rdr = cmd.ExecuteReader() as MySqlDataReader;
-
-            List<Specialty> specialties = new List<Specialty> (){};
 
             while (rdr.Read())
             {
@@ -215,7 +215,6 @@ namespace HairSalon.Models
             }
             
             return specialties;
-
         }
         public void AddSpecialty (Specialty newSpecialty)
         {

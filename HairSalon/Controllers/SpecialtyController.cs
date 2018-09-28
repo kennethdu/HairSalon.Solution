@@ -12,11 +12,10 @@ namespace HairSalon.Controllers
             List<Specialty> allspecialties = Specialty.GetAll();
             return View(allspecialties);
         }
-        [HttpGet("/employee/{employeeId}/specialty/new")]
-        public ActionResult CreateForm(int employeeId)
+        [HttpGet("/specialty/new")]
+        public ActionResult CreateForm()
         {
-            Employee employee = Employee.Find(employeeId);
-            return View(employee);
+            return View();
         }
         [HttpGet("/employee/{employeeId}/specialty/{specialtiesId}")]
         public ActionResult Details(int employeeId, int specialtiesId)
