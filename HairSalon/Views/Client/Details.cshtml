@@ -1,11 +1,20 @@
-@{
-  Layout = "_Layout";
+@using ToDoList.Models;
+
+<h1>Hair Salon</h1>
+<h2>Clients: @Model["client"].GetClient()</h2>
+<hr />
+@if (@Model["client"].Count != 0)
+{
+  <h4>Here are all the clients for this employee:</h4>
+  <ul>
+    @foreach (var item in @Model["employeeClients"])
+    {
+      <li>@item.GetClient()</li>
+    }
+  </ul>
 }
 
-<div class='container'>
-  <h1>Hair Salon</h1>
-  <hr />
-  <h2>@Model["client"].GetClientName()</h2>
+
   <a href = '/client/new'><button class='btn btn-danger'>Add new client</button></a>
   <a href = '/specialty/new'><button class='btn btn-danger'>Add new specialty</button></a>
   <a href='/employee/new'><button class='btn btn-warning'>Add Employees</button></a>

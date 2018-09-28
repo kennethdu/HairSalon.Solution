@@ -7,14 +7,9 @@ namespace HairSalon.Controllers
     public class SpecialtyController : Controller
     {
         [HttpGet("/specialty")]
-        public ActionResult Index(int employeeId, int specialtiesId)
+        public ActionResult Index()
         {
-            Dictionary<string, object> model = new Dictionary<string, object> ();
-            Specialty specialty = Specialty.Find(specialtiesId);
-            Employee employee = Employee.Find(employeeId);
             List<Specialty> allspecialties = Specialty.GetAll();
-            model.Add("employee", employee);
-            model.Add("specialty", specialty);
             return View(allspecialties);
         }
         [HttpGet("/specialty/new")]

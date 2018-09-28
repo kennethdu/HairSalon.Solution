@@ -20,11 +20,13 @@ namespace HairSalon.Controllers
         [HttpGet("/employee/{employeeId}/client/{clientId}")]
         public ActionResult Details(int employeeId, int clientId)
         {
-            Client client = Client.Find(clientId);
             Dictionary<string, object> model = new Dictionary<string, object>();
+            Client client = Client.Find(clientId);
             Employee employee = Employee.Find(employeeId);
+            List<Client> employeeClient = employee.GetClient();
             model.Add("client", client);
             model.Add("employee", employee);
+            model.Add("employeeClient", employeeClient);
             return View(model);
         }
         [HttpGet("client/{clientId}/update")]
