@@ -6,19 +6,19 @@ namespace HairSalon.Controllers
 {
     public class SpecialtyController : Controller
     {
-        [HttpGet("/specialties")]
+        [HttpGet("/specialty")]
         public ActionResult Index()
         {
             List<Specialty> allspecialties = Specialty.GetAll();
             return View(allspecialties);
         }
-        [HttpGet("/employee/{employeeId}/specialties/new")]
+        [HttpGet("/employee/{employeeId}/specialty/new")]
         public ActionResult CreateForm(int employeeId)
         {
             Employee employee = Employee.Find(employeeId);
             return View(employee);
         }
-        [HttpGet("/employee/{employeeId}/specialties/{specialtiesId}")]
+        [HttpGet("/employee/{employeeId}/specialty/{specialtiesId}")]
         public ActionResult Details(int employeeId, int specialtiesId)
         {
             Dictionary<string, object> model = new Dictionary<string, object>();

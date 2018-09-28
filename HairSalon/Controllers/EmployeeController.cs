@@ -28,6 +28,26 @@ namespace HairSalon.Controllers
             model.Add("client", employeeClient);
             return View(model);
         }
+        [HttpGet("/employee/{employeeId}/update")]
+        public ActionResult UpdateForm (int employeeId)
+        {
+            Employee thisEmployee = Employee.Find(employeeId);
+            return View();
+        }
+        [HttpGet("/employee/{employeeId}/delete")]
+        public ActionResult DeleteOne(int employeeId)
+        {
+            Employee thisEmployee = Employee.Find(employeeId);
+            thisEmployee.Delete();
+            return RedirectToAction("Index");
+        }
+        [HttpPost("/employee/{employeeId}/update")]
+        public ActionResult Update (int employeeId)
+        {
+            Employee thisEmployee = Employee.Find(employeeId);
+            thisEmployee.Edit(Request.Form["new-employee-name"]);
+            return RedirectToAction("Index");
+        }
         [HttpPost("/employee")]
         public ActionResult Create()
         {
@@ -36,7 +56,7 @@ namespace HairSalon.Controllers
             List<Employee> allEmployee = Employee.GetAllEmployee();
             return RedirectToAction("Index");
         }
-        [HttpPost("/clients")]
+        [HttpPost("/client")]
         public ActionResult CreateClient(string clientName, int employeeId)
         {
             Dictionary<string, object> model = new Dictionary<string, object>();
@@ -48,7 +68,7 @@ namespace HairSalon.Controllers
             model.Add("employee", foundEmployee);
             return RedirectToAction("Details", new {id = employeeId});
         }
-        [HttpPost("/specialties")]
+        [HttpPost("/specialty")]
         public ActionResult CreateSpecialty(string specialtyName, int employeeId)
         {
             Dictionary<string, object> model = new Dictionary<string, object>();
