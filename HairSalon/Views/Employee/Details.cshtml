@@ -34,7 +34,7 @@
 
 <h4>Add a client to this employee:</h4>
 <form action='/employee/@Model["employee"].GetEmployeeId()/client/new' method='post'>
-  <label for='employee-id'>Select an employee</label>
+  <label for='employee-id'>Select a client</label>
   <select id='employee-id' name='client-id' type='text'>
     @foreach (var client in @Model["allClient"])
     {
