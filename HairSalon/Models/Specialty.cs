@@ -29,7 +29,7 @@ namespace HairSalon.Models
             conn.Open();
 
             var cmd = conn.CreateCommand() as MySqlCommand;
-            cmd.CommandText = "@INSERT INTO specialties (name) VALUES (@newSpecialty);";
+            cmd.CommandText = @"INSERT INTO specialties (name) VALUES (@newSpecialty);";
 
             MySqlParameter newSpecialty = new MySqlParameter();
             newSpecialty.ParameterName = "@newSpecialty";
@@ -52,7 +52,7 @@ namespace HairSalon.Models
             conn.Open();
 
             var cmd = conn.CreateCommand() as MySqlCommand;
-            cmd.CommandText = "@SELECT * FROM specialties;";
+            cmd.CommandText = @"SELECT * FROM specialties;";
 
             var rdr = cmd.ExecuteReader() as MySqlDataReader;
             while (rdr.Read())

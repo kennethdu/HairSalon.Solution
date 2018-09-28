@@ -160,7 +160,7 @@ namespace HairSalon.Models
             conn.Open();
 
             var cmd = conn.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"INSERT INTO employees_clients(employee_id, client_id) VALUES (@employeeId, @clientId;";
+            cmd.CommandText = @"INSERT INTO employees_clients(employee_id, client_id) VALUES (@employeeId, @clientId);";
 
             MySqlParameter employeeIdParameter = new MySqlParameter();
             employeeIdParameter.ParameterName = "@employeeId";
@@ -187,7 +187,7 @@ namespace HairSalon.Models
 
             var cmd = conn.CreateCommand() as MySqlCommand;
             cmd.CommandText = @"SELECT specialties.* FROM employees
-            JOIN employees_specialties ON (specialties.id = employees_specialties.specialties.id)
+            JOIN employees_specialties ON (specialties.id = employees_specialties.specialty_id)
             JOIN specialties ON (employees_specialties.employee_id = employees.id)
             WHERE employees.id = @employeesIdParameter;";
 
@@ -196,7 +196,7 @@ namespace HairSalon.Models
             employeesIdParameter.Value = this._employeeId;
             cmd.Parameters.Add(employeesIdParameter);
 
-            MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
+            var rdr = cmd.ExecuteReader() as MySqlDataReader;
 
             List<Specialty> specialties = new List<Specialty> (){};
 

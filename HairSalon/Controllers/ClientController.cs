@@ -48,13 +48,12 @@ namespace HairSalon.Controllers
             return RedirectToAction("Index");
         }
         [HttpPost("/employee/{employeeId}/client/{clientId}/update")]
-        public ActionResult Update(int employeeId, int clientId)
+        public ActionResult UpdateClient(int employeeId, int clientId)
         {
             Employee thisEmployee = Employee.Find(employeeId);
             Client thisClient = Client.Find(clientId);
             thisClient.Edit(Request.Form["new-client-name"]);
-            return RedirectToAction("Index");
-
+            return RedirectToAction("Index", thisClient);
         }
     }
 }

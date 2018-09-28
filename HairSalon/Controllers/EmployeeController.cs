@@ -24,8 +24,14 @@ namespace HairSalon.Controllers
             Dictionary<string, object> model = new Dictionary<string, object>();
             Employee selectedEmployee = Employee.Find(id);
             List<Client> employeeClient = selectedEmployee.GetClient();
+            List<Specialty> employeeSpecialty = selectedEmployee.GetSpecialty();
+            List<Client> allClients = Client.GetAllClient();
+            List<Specialty> allSpecialties = Specialty.GetAll();
             model.Add("employee", selectedEmployee);
+            model.Add("specialties", employeeSpecialty);
             model.Add("client", employeeClient);
+            model.Add("allClients", allClients);
+            model.Add("allSpecialties", allSpecialties);
             return View(model);
         }
         [HttpGet("/employee/{employeeId}/update")]
@@ -44,14 +50,14 @@ namespace HairSalon.Controllers
             return RedirectToAction("Index");
         }
         [HttpPost("/employee/{employeeId}/update")]
-        public ActionResult Update (int employeeId)
+        public ActionResult UpdateEmployee (int employeeId)
         {
             Employee thisEmployee = Employee.Find(employeeId);
             thisEmployee.Edit(Request.Form["new-employee-name"]);
             return RedirectToAction("Index");
         }
         [HttpPost("/employee")]
-        public ActionResult Create()
+        public ActionResult CreateEmployee()
         {
             Employee NewEmployee = new Employee(Request.Form["new-employee"]);
             NewEmployee.Save();
@@ -65,10 +71,11 @@ namespace HairSalon.Controllers
             Employee foundEmployee = Employee.Find(employeeId);
             Client newClient = new Client(Request.Form["new-client"]);
             newClient.Save();
+            foundEmployee.AddClient(newClient);
             List<Client> employeeClient = foundEmployee.GetClient();
             model.Add("client", employeeClient);
             model.Add("employee", foundEmployee);
-            return RedirectToAction("Details", new {id = employeeId});
+            return RedirectToAction("Details", new{id = employeeId});
         }
         [HttpPost("/specialty")]
         public ActionResult CreateSpecialty(string specialtyName, int employeeId)
@@ -77,6 +84,7 @@ namespace HairSalon.Controllers
             Employee foundEmployee = Employee.Find(employeeId);
             Specialty newSpecialty = new Specialty(Request.Form["new-specialty"]);
             newSpecialty.Save();
+            foundEmployee.AddSpecialty(newSpecialty);
             List<Specialty> employeeSpecialty = foundEmployee.GetSpecialty();
             model.Add("specialty", employeeSpecialty);
             model.Add("employee", foundEmployee);
