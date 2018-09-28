@@ -37,7 +37,7 @@ namespace HairSalon.Controllers
             Employee thisEmployee = Employee.Find(employeeId);
             model.Add("employee", thisEmployee);
             model.Add("client", thisClient);
-            return View();
+            return View(model);
         }
         [HttpGet("/employee/{employeeId}/client/{clientId}/delete")]
         public ActionResult DeleteOne(int employeeId, int clientId)

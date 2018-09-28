@@ -31,8 +31,10 @@ namespace HairSalon.Controllers
         [HttpGet("/employee/{employeeId}/update")]
         public ActionResult UpdateForm (int employeeId)
         {
+            Dictionary<string, object> model = new Dictionary<string, object>();
             Employee thisEmployee = Employee.Find(employeeId);
-            return View();
+            model.Add("employee", thisEmployee);
+            return View("UpdateForm", model);
         }
         [HttpGet("/employee/{employeeId}/delete")]
         public ActionResult DeleteOne(int employeeId)
