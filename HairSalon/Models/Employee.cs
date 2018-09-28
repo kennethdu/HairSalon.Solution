@@ -260,7 +260,7 @@ namespace HairSalon.Models
         }
         public void Delete()
         {
-            MySqlConnection conn = new MySqlConnection();
+            MySqlConnection conn = DB.Connection();
             conn.Open();
             var cmd = conn.CreateCommand() as MySqlCommand;
             cmd.CommandText = @"DELETE FROM employees WHERE id = @employeeId; DELETE FROM employees_specialties WHERE employee_id= @employeeId; DELETE FROM employees_clients WHERE employee_id = @employeeId;";

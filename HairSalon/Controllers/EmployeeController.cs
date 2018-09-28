@@ -52,7 +52,7 @@ namespace HairSalon.Controllers
         {
             Employee thisEmployee = Employee.Find(employeeId);
             thisEmployee.Delete();
-            return RedirectToAction("Index");
+            return RedirectToAction("Details");
         }
         [HttpPost("/employee/{employeeId}/update")]
         public ActionResult UpdateEmployee (int employeeId)
@@ -60,6 +60,14 @@ namespace HairSalon.Controllers
             Employee thisEmployee = Employee.Find(employeeId);
             thisEmployee.Edit(Request.Form["new-employee-name"]);
             return RedirectToAction("Index");
+        }
+        [HttpPost("/employee/{employeeId}/specialty/new")]
+        public ActionResult AddSpecialty (int employeeId)
+        {
+            Employee employee = Employee.Find(employeeId);
+            Specialty specialty = Specialty.Find(int.Parse(Request.Form["specialty-id"]));
+            employee.AddSpecialty(specialty);
+            return RedirectToAction("Details", new {id = employeeId});
         }
         [HttpPost("/employee/{employeeId}/client/new")]
         public ActionResult AddEmployee (int employeeId)
