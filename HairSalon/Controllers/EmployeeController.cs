@@ -52,7 +52,7 @@ namespace HairSalon.Controllers
         {
             Employee thisEmployee = Employee.Find(employeeId);
             thisEmployee.Delete();
-            return RedirectToAction("Details");
+            return RedirectToAction("Index");
         }
         [HttpPost("/employee/{employeeId}/update")]
         public ActionResult UpdateEmployee (int employeeId)
