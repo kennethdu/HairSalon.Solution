@@ -17,7 +17,6 @@ namespace HairSalon.Controllers
         {
             return View();
         }
-
         [HttpGet("/employee/{id}")]
         public ActionResult Details(int id)
         {
@@ -41,6 +40,12 @@ namespace HairSalon.Controllers
             Employee thisEmployee = Employee.Find(employeeId);
             model.Add("employee", thisEmployee);
             return View("UpdateForm", model);
+        }
+        [HttpGet("/employee/delete")]
+        public ActionResult DeleteAll()
+        {
+            Employee.DeleteAll();
+            return RedirectToAction("Index");
         }
         [HttpGet("/employee/{employeeId}/delete")]
         public ActionResult DeleteOne(int employeeId)
