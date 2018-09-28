@@ -61,6 +61,14 @@ namespace HairSalon.Controllers
             thisEmployee.Edit(Request.Form["new-employee-name"]);
             return RedirectToAction("Index");
         }
+        [HttpPost("/employee/{employeeId}/client/new")]
+        public ActionResult AddEmployee (int employeeId)
+        {
+            Employee employee = Employee.Find(employeeId);
+            Client client = Client.Find(int.Parse(Request.Form["client-id"]));
+            employee.AddClient(client);
+            return RedirectToAction("Details", new {id = employeeId});
+        }
         [HttpPost("/employee")]
         public ActionResult CreateEmployee()
         {

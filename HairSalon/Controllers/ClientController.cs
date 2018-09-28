@@ -41,7 +41,7 @@ namespace HairSalon.Controllers
             Client.DeleteAll();
             return RedirectToAction("Index");
         }
-        [HttpGet("/employee/{employeeId}/client/{clientId}/delete")]
+        [HttpGet("client/{clientId}/delete")]
         public ActionResult DeleteOne(int employeeId, int clientId)
         {
             Client thisClient = Client.Find(clientId);
@@ -56,13 +56,6 @@ namespace HairSalon.Controllers
             thisClient.Edit(Request.Form["new-client-name"]);
             return RedirectToAction("Index", thisClient);
         }
-        [HttpPost("/employee/{employeeId}/client/new")]
-        public ActionResult AddEmployee (int employeeId)
-        {
-            Employee employee = Employee.Find(employeeId);
-            Client client = Client.Find(int.Parse(Request.Form["client-id"]));
-            employee.AddClient(client);
-            return RedirectToAction("Details", new {id = employeeId});
-        }
+    
     }
 }
