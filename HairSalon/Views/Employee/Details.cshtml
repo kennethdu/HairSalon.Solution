@@ -6,7 +6,6 @@
 
 <h1>Employee</h1>
 <h2>Employee Name: @Model["employee"].GetEmployee()</h2>
-<hr />
 @if (Model["client"].Count != 0)
 {
   <h4>This employee has these clients:</h4>
@@ -18,7 +17,6 @@
   </ul>
 }
 
-<hr />
 @if (Model["employeeSpecialties"].Count != 0)
 {
   <h4>This employee has these specialties:</h4>
@@ -29,8 +27,6 @@
     }
   </ul>
 }
-
-<hr/>
 
 <h4>Add a client to this employee:</h4>
 <form action='/employee/@Model["employee"].GetEmployeeId()/client/new' method='post'>

@@ -1,23 +1,36 @@
-@using ToDoList.Models;
 
-<h1>Hair Salon</h1>
-<h2>Clients: @Model["client"].GetClient()</h2>
-<hr />
-@if (@Model["client"].Count != 0)
+@using HairSalon.Models;
+@{
+  Layout = "_Layout";
+}
+
+<h1>Clients</h1>
+<h2>Client Name: @Model["client"].GetClient()</h2>
+
+@if (Model["clientEmployee"].Count != 0)
 {
-  <h4>Here are all the clients for this employee:</h4>
+  <h4>This specialty is done by these employee:</h4>
   <ul>
-    @foreach (var item in @Model["employeeClients"])
+    @foreach (var employee in Model["clientEmployee"])
     {
-      <li>@item.GetClient()</li>
+      <li>@employee.GetEmployee()</li>
     }
   </ul>
 }
 
+<h4>Add an employee to this specialty:</h4>
+<form action='/specialty/@Model["client"].GetClientId()' method='post'>
+  <label for='employee-id'>Select an employee</label>
+  <select id='employee-id' name='employee-id' type='text'>
+    @foreach (var employee in @Model["allEmployees"])
+    {
+      <option value='@employee.GetEmployeeId()'>@employee.GetEmployee()</option>
+    }
+  </select>
+  <button type='submit'>Add</button>
+</form>
 
-  <a href = '/client/new'><button class='btn btn-danger'>Add new client</button></a>
-  <a href = '/specialty/new'><button class='btn btn-danger'>Add new specialty</button></a>
-  <a href='/employee/new'><button class='btn btn-warning'>Add Employees</button></a>
-</div>
-
-<a href='/'><button class='btn btn-success'>Back Home</button></a>
+<p><a href="/client">Return to Client List</a></p>
+<p><a href="/client/@Model["client"].GetClientId()/update">Edit client</a></p>
+<p><a href="/client/@Model["client"].GetClientId()/delete">Delete client</a></p>
+<p><a href="/">Return to Main Page</a></p>

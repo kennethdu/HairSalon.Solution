@@ -17,16 +17,16 @@ namespace HairSalon.Controllers
         {
             return View();
         }
-        [HttpGet("/employee/{employeeId}/client/{clientId}")]
-        public ActionResult Details(int employeeId, int clientId)
+        [HttpGet("/client/{clientId}")]
+        public ActionResult Details(int clientId)
         {
             Dictionary<string, object> model = new Dictionary<string, object>();
             Client client = Client.Find(clientId);
-            Employee employee = Employee.Find(employeeId);
-            List<Client> employeeClient = employee.GetClient();
+            List<Employee> allEmployees = Employee.GetAllEmployee();
+            List<Employee> employee = client.GetEmployee();
             model.Add("client", client);
-            model.Add("employee", employee);
-            model.Add("employeeClient", employeeClient);
+            model.Add("clientEmployee", employee);
+            model.Add("allEmployees", allEmployees);
             return View(model);
         }
         [HttpGet("client/{clientId}/update")]
@@ -47,7 +47,6 @@ namespace HairSalon.Controllers
         public ActionResult DeleteOne(int employeeId, int clientId)
         {
             Client thisClient = Client.Find(clientId);
-            Employee thisEmployee = Employee.Find(employeeId);
             thisClient.Delete();
             return RedirectToAction("Index");
         }

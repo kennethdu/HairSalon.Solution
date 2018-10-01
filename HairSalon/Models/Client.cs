@@ -99,7 +99,7 @@ namespace HairSalon.Models
             thisId.Value = id;
             cmd.Parameters.Add(thisId);
 
-            var rdr = cmd.ExecuteReader() as MySqlDataReader;
+            MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
 
             int clientId = 0;
             string clientName = "";
@@ -136,7 +136,7 @@ namespace HairSalon.Models
         }
         public void Delete()
         {
-            MySqlConnection conn = new MySqlConnection();
+            MySqlConnection conn = DB.Connection();
             conn.Open();
             var cmd = conn.CreateCommand() as MySqlCommand;
             cmd.CommandText = @"DELETE FROM clients WHERE id = @clientId; DELETE FROM employees_clients WHERE client_id = @clientId;";
@@ -186,8 +186,8 @@ namespace HairSalon.Models
 
             var cmd = conn.CreateCommand() as MySqlCommand;
             cmd.CommandText = @"SELECT employees.* FROM clients
-            JOIN employees_clients ON (clients.id = employees_clients.client_id
-            JOIN employees ON (employees_clients.employee_id = employees.id
+            JOIN employees_clients ON (clients.id = employees_clients.client_id)
+            JOIN employees ON (employees_clients.employee_id = employees.id)
             WHERE clients.id = @clientIdParameter;";
 
             MySqlParameter clientIdParameter = new MySqlParameter();

@@ -17,15 +17,25 @@ namespace HairSalon.Controllers
         {
             return View();
         }
-        [HttpGet("/employee/{employeeId}/specialty/{specialtiesId}")]
-        public ActionResult Details(int employeeId, int specialtiesId)
+        [HttpGet("/specialty/{specialtiesId}")]
+        public ActionResult Details(int specialtiesId)
         {
             Dictionary<string, object> model = new Dictionary<string, object>();
             Specialty specialty = Specialty.Find(specialtiesId);
-            Employee employee = Employee.Find(employeeId);
+            List<Employee> allEmployees = Employee.GetAllEmployee();
+            List<Employee> employee = specialty.GetEmployee();
             model.Add("specialty", specialty);
-            model.Add("employee", employee);
+            model.Add("specialtyEmployee", employee);
+            model.Add("allEmployees", allEmployees);
             return View(model);
+        }
+        [HttpPost("/specialty/{specialtyId}")]
+        public ActionResult AddEmployeeToSpecialty(int specialtyId)
+        {
+            Specialty specialty = Specialty.Find(specialtyId);
+            Employee employee = Employee.Find(int.Parse(Request.Form["employee-id"]));
+            specialty.AddEmployee(employee);
+            return RedirectToAction("Details", new { id = specialtyId });
         }
     }
 }

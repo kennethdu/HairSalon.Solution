@@ -13,13 +13,11 @@
   }
   @foreach (var specialty in Model)
   {
-    <h3><a href='/employee/@specialty.GetId()'>@specialty.GetSpecialty()</a></h3>
+    <h3><a href='/specialty/@specialty.GetId()'>@specialty.GetSpecialty()</a></h3>
   }
-  <a href = '/client/new'><button class='btn btn-success'>Add new client</button></a>
-   <a href='/employee'><button class='btn btn-danger'>View Employees</button></a>
-  <a href = '/specialty'><button class='btn btn-danger'>View specialty</button></a>
- 
-
-
+  
+  <a href = '/specialty/new'><button class='btn btn-success'>Add new specialty</button></a>
+  <a href='/employee'><button class='btn btn-warning'>View Employees</button></a>
+  <a href = '/client'><button class='btn btn-warning'>View Clients</button></a>
   <a href='/'><button class='btn btn-success'>Back Home</button></a>
 </div>

@@ -1,14 +1,34 @@
+
+@using HairSalon.Models;
 @{
   Layout = "_Layout";
 }
 
-<div class='container'>
-  <h1>Hair Salon</h1>
-  <hr/>
-  <h2>@Model["specialty"].GetSpecialty()</h2>
-    <a href = '/client/new'><button class='btn btn-danger'>Add new client</button></a>
-    <a href = '/specialty/new'><button class='btn btn-danger'>Add new specialty</button></a>
-    <a href='/employee/new'><button class='btn btn-warning'>Add Employees</button></a>
-</div>
+<h1>Specialties</h1>
+<h2>Specialty Name: @Model["specialty"].GetSpecialty()</h2>
 
-<a href='/'><button class='btn btn-success'>Back Home</button></a>
+@if (Model["specialtyEmployee"].Count != 0)
+{
+  <h4>This specialty is done by these employee:</h4>
+  <ul>
+    @foreach (var employee in Model["specialtyEmployee"])
+    {
+      <li>@employee.GetEmployee()</li>
+    }
+  </ul>
+}
+
+<h4>Add an employee to this specialty:</h4>
+<form action='/specialty/@Model["specialty"].GetId()' method='post'>
+  <label for='employee-id'>Select an employee</label>
+  <select id='employee-id' name='employee-id' type='text'>
+    @foreach (var employee in @Model["allEmployees"])
+    {
+      <option value='@employee.GetEmployeeId()'>@employee.GetEmployee()</option>
+    }
+  </select>
+  <button type='submit'>Add</button>
+</form>
+
+<p><a href="/specialty/">Return to Specialty List</a></p>
+<p><a href="/">Return to Main Page</a></p>

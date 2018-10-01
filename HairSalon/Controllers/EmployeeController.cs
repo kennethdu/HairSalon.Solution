@@ -96,7 +96,7 @@ namespace HairSalon.Controllers
             List<Client> employeeClient = foundEmployee.GetClient();
             model.Add("client", employeeClient);
             model.Add("employee", foundEmployee);
-            return RedirectToAction("Details", new{id = employeeId});
+            return RedirectToAction("Index", new{id = employeeId});
         }
         [HttpPost("/specialty")]
         public ActionResult CreateSpecialty(int employeeId)
@@ -109,7 +109,7 @@ namespace HairSalon.Controllers
             List<Specialty> employeeSpecialty = foundEmployee.GetSpecialty();
             model.Add("specialty", employeeSpecialty);
             model.Add("employee", foundEmployee);
-            return RedirectToAction("Details", new{id = employeeId});
+            return RedirectToAction("Index", new{id = employeeId});
         }
     }
 }
