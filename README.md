@@ -30,19 +30,25 @@ User Stories
 ```
 * CREATE DATABASE kenneth_du;
 ```
+```
 $ USE kenneth_du;
+```
 ```
 $ CREATE TABLE employees (id serial PRIMARY KEY, name VARCHAR(255));
 ```
+```
 $ CREATE TABLE clients (id serial PRIMARY KEY, name VARCHAR(255));
+```
 ```
 $ CREATE TABLE specialties (id serial PRIMARY KEY, name VARCHAR(255));
 ```
+```
 $ CREATE TABLE employees_clients (id serial PRIMARY KEY, employee_id INT, client_id INT);
+```
 ```
 $ CREATE TABLE employees_specialties (id serial PRIMARY KEY, employee_id INT, specialty_id INT);
 ```
-
+```
 ## Specifications
 
 ### Specs: Hair Salon
