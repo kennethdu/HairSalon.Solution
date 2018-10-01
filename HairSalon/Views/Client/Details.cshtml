@@ -18,8 +18,8 @@
   </ul>
 }
 
-<h4>Add an employee to this specialty:</h4>
-<form action='/specialty/@Model["client"].GetClientId()' method='post'>
+<h4>Add an employee to this client:</h4>
+<form action='/client/@Model["client"].GetClientId()' method='post'>
   <label for='employee-id'>Select an employee</label>
   <select id='employee-id' name='employee-id' type='text'>
     @foreach (var employee in @Model["allEmployees"])

@@ -57,6 +57,14 @@ namespace HairSalon.Controllers
             thisClient.Edit(Request.Form["new-client-name"]);
             return RedirectToAction("Index", thisClient);
         }
+        [HttpPost("/client/{clientId}")]
+        public ActionResult AddEmployeeToClient(int clientId)
+        {
+            Client client = Client.Find(clientId);
+            Employee employee = Employee.Find(int.Parse(Request.Form["employee-id"]));
+            client.AddEmployee(employee);
+            return RedirectToAction("Details", new { id = clientId});
+        }
     
     }
 }

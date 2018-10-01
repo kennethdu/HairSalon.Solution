@@ -212,5 +212,32 @@ namespace HairSalon.Models
             }
             return employees;
         }
+        public void AddEmployee(Employee newEmployee)
+        {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+
+            var cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"INSERT INTO employees_clients (client_id, employee_id) VALUES (@ClientId, @EmployeeId);";
+
+            MySqlParameter clientId = new MySqlParameter();
+            clientId.ParameterName = "@ClientId";
+            clientId.Value = _clientId;
+            cmd.Parameters.Add(clientId);
+
+            MySqlParameter Employees_id = new MySqlParameter();
+            Employees_id.ParameterName = "@EmployeeId";
+            Employees_id.Value = newEmployee.GetEmployeeId();
+            cmd.Parameters.Add(Employees_id);
+
+            cmd.ExecuteNonQuery();
+
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
+
+        }
     }
 }

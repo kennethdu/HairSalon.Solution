@@ -29,13 +29,13 @@ namespace HairSalon.Controllers
             model.Add("allEmployees", allEmployees);
             return View(model);
         }
-        [HttpPost("/specialty/{specialtyId}")]
-        public ActionResult AddEmployeeToSpecialty(int specialtyId)
+        [HttpPost("/specialty/{specialtiesId}")]
+        public ActionResult AddEmployeeToSpecialty(int specialtiesId)
         {
-            Specialty specialty = Specialty.Find(specialtyId);
+            Specialty specialty = Specialty.Find(specialtiesId);
             Employee employee = Employee.Find(int.Parse(Request.Form["employee-id"]));
             specialty.AddEmployee(employee);
-            return RedirectToAction("Details", new { id = specialtyId });
+            return RedirectToAction("Details", new { id = specialtiesId });
         }
     }
 }
