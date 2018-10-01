@@ -1,6 +1,6 @@
 # _Hair Salon_
 
-#### _Friday Independent Project for Epicdous, 9.21.2018_
+#### _Friday Independent Project for Epicdous, 9.21.2018/ 9.28.2018_
 
 #### By _**Kenneth Du**_
 
@@ -26,13 +26,16 @@ User Stories
 
 * _Setup Database_
 
+* Open terminal a terminal application(I suggest Git Bash)
+```
 * CREATE DATABASE kenneth_du;
-* USE kenneth_du;
-* CREATE TABLE employees (id serial PRIMARY KEY, name VARCHAR(255));
-* CREATE TABLE clients (id serial PRIMARY KEY, name VARCHAR(255));
-* CREATE TABLE specialties (id serial PRIMARY KEY, name VARCHAR(255));
-* CREATE TABLE employees_clients (id serial PRIMARY KEY, employee_id INT, client_id INT);
-* CREATE TABLE employees_specialties (id serial PRIMARY KEY, employee_id INT, specialty_id INT);
+$ USE kenneth_du;
+$ CREATE TABLE employees (id serial PRIMARY KEY, name VARCHAR(255));
+$ CREATE TABLE clients (id serial PRIMARY KEY, name VARCHAR(255));
+$ CREATE TABLE specialties (id serial PRIMARY KEY, name VARCHAR(255));
+$ CREATE TABLE employees_clients (id serial PRIMARY KEY, employee_id INT, client_id INT);
+$ CREATE TABLE employees_specialties (id serial PRIMARY KEY, employee_id INT, specialty_id INT);
+```
 
 ## Specifications
 
