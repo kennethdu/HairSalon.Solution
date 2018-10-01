@@ -48,7 +48,7 @@ $ CREATE TABLE employees_clients (id serial PRIMARY KEY, employee_id INT, client
 ```
 $ CREATE TABLE employees_specialties (id serial PRIMARY KEY, employee_id INT, specialty_id INT);
 ```
-```
+
 ## Specifications
 
 ### Specs: Hair Salon
