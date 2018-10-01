@@ -39,7 +39,7 @@ And here are the user stories that the salon owner would like you to add:
 
 * _Setup Database_
 
-* Open terminal a terminal application(I suggest Git Bash)
+* Open terminal a terminal application(I suggest mono)
 ```
 $ CREATE DATABASE kenneth_du;
 ```
